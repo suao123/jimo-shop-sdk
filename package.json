@@ -1,0 +1,15 @@
+{
+  "name": "demo",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
+  },
+  "scripts": {
+    "test": "mocha src/test/*.test.js",
+    "build": ""
+  }
+}
