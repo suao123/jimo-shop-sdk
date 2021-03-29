@@ -4,13 +4,16 @@ const beCouponApi = require('../rest/be/BeCouponApi')
 describe('后台优惠券api测试', async () => {
 
     it('添加优惠券', async () => {
-        var res = await beCouponApi.api.add(beCouponApi.api.test)
+        var couponForm = beCouponApi.test.test
+        var res = await beCouponApi.api.add()
         expect(res.status).to.be.equal(200)
         expect(res.data).to.include.keys('id')
     })
 
     it('更新优惠券', async () => {
-        var res = await beCouponApi.api.update(beCouponApi.api.updateTest.id ,beCouponApi.api.updateTest)
+        couponId = beCouponApi.test.updateTest.id
+        couponForm = beCouponApi.test.updateTest
+        var res = await beCouponApi.api.update(couponId , couponForm)
         expect(res.status).to.be.equal(200)
         expect(res.data.fullMoney).to.be.equal(5000)
     })
@@ -21,7 +24,8 @@ describe('后台优惠券api测试', async () => {
     })
 
     it('查询优惠券列表', async () => {
-        var res = await beCouponApi.api.query(beCouponApi.api.queryTest)
+        var queryForm = beCouponApi.test.queryTest
+        var res = await beCouponApi.api.query(queryForm)
         expect(res.status).to.be.equal(200)
         expect(res.data).to.include.keys('total')
     })

@@ -53,7 +53,7 @@ module.exports.test = {
     },
 
     updateTest : updateTest = {
-        id : 35,
+        id : 1,
         title: "1gdgfdg23",
         imgUrl: "123",
         description: "测试测试测试",
