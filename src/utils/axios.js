@@ -1,37 +1,94 @@
-let axios = require('axios');
+let axios = require('axios')
+let qs = require('qs')
 let url_seg = require('../config/urlConfig')
 
 const get = async function(api, parameters){
-    var data;
-    var url = url_seg.url + api;
-    await axios.get(url, {
-        params: parameters,
-        timeout: 10000
-    })
-    .then(function(response){
-        data = response.data;
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
-    return data;
+    try{
+        var url = url_seg.burl + api;
+
+        let res = await axios.get(url, {
+            params: parameters,
+            timeout: 10000
+        })
+        var status = res.status
+        var data = { 
+            data : res.data,
+            status : res.status
+        }
+        return new Promise((resolve) => {
+            if(status == 200) {
+                resolve(data);
+            } else {
+                resolve(data)
+            }
+        })
+    } catch (err) {
+        console.log("服务器出错")
+        console.log(err)
+    }
 }
 
 const post = async function(api, parameters){
-    var data;
-    var url = url_seg.url + api;
-    await axios.post(url, {
-        params: parameters,
-        timeout: 10000
-    })
-    .then(function(response){
-        data = response.data;
-    })
-    .catch(function(error){
-        console.log(error);
-    });
-    return data;
+    try{
+        var url = url_seg.burl + api;
+        let res = await axios.post(url, qs.stringify(parameters),
+            {
+                headers: { "Content-Type": "application/x-www-form-urlencoded" }
+            }, {
+                timeout: 10000
+            }
+        )
+
+        var status = res.status
+        var data = { 
+            data : res.data,
+            status : res.status
+        }
+
+        return new Promise((resolve) => {
+            if(status == 200) {
+                resolve(data);
+            } else {
+                resolve(data)
+            }
+        })
+    } catch(err) {
+        console.log('服务器出错')
+        console.log(err)
+    }
+    
+}
+
+const toDelete = async function (api, parameters) {
+    try {
+        var url = url_seg.burl + api;
+        let res = await axios.delete(url, qs.stringify(parameters),
+            {
+                headers: { "Content-Type": "application/x-www-form-urlencoded" }
+            }, {
+                timeout: 10000
+            }
+        )
+
+        var status = res.status
+        var data = { 
+            data : res.data,
+            status : res.status
+        }
+
+        return new Promise((resolve) => {
+            if(status == 200) {
+                resolve(data);
+            } else {
+                resolve(data)
+            }
+        })
+    } catch (err) {
+        console.log('服务器出错')
+        console.log(err)
+    }
 }
 
 module.exports.post = post;
 module.exports.get = get;
+module.exports.delete = toDelete;
