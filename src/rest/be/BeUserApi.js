@@ -1,14 +1,15 @@
 const http = require('../../utils/axios');
+const api = "/users/"
 
-
-async function banUser() {
-    const data = await http.post("/users/1/ban", {})
-    console.log(data)
-    return data
+module.exports.api = {
+    banUser : banUser =  async (userId) => {
+        const data = await http.post(api + userId +"/ban", {}) 
+        return data
+    },
+    
+    unbanUser : unbanUser =  async (userId)  =>{
+        const data = await http.post(api + userId +"/unban", {})
+        return data
+    }
 }
 
-async function unbanUser() {
-    const data = await http.post("/users/1/unban", {})
-    console.log(data)
-    return data
-}

@@ -12,5 +12,7 @@
     
 2. 后端
     1. - [x] banner管理
-    2. - [x] 优惠券管理
+    2. - [x] coupon管理
     3. - [x] route管理
+    4. - [x] setting管理
+    5. - [x] user管理
