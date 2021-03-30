@@ -1,11 +1,11 @@
 const expect = require('chai').expect;
-const beCouponApi = require('../rest/be/BeCouponApi')
+const beCouponApi = require('../../rest/be/BeCouponApi')
 
 describe('后台优惠券api测试', async () => {
 
     it('添加优惠券', async () => {
         var couponForm = beCouponApi.test.test
-        var res = await beCouponApi.api.add()
+        var res = await beCouponApi.api.add(couponForm)
         expect(res.status).to.be.equal(200)
         expect(res.data).to.include.keys('id')
     })

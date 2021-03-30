@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const beBannerApi = require('../rest/be/BeBannerApi')
+const beBannerApi = require('../../rest/be/BeBannerApi')
 
 describe('后台广告栏api测试', async() => {
 
