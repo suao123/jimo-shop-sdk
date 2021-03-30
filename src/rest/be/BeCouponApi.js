@@ -5,38 +5,38 @@ const api = "/coupons/"
 module.exports.api = {
 
     add : add = async function (couponForm) {
-        const data = await http.post(api, couponForm)
+        const data = await http.post(api, couponForm, 1)
         return data
     },
     
     update : update = async function (couponId, couponForm) {
-        const data = await http.post(api + couponId, couponForm)
+        const data = await http.post(api + couponId, couponForm, 1)
         return data
     },
     
     query : query = async function (queryForm) {
-        const data = await http.get(api + "query",queryForm)
+        const data = await http.get(api + "query",queryForm, 1)
         return data
     },
     
     deleteCoupon : deleteCoupon = async function(couponId) {
-        const data = await http.post(api + couponId + "/delete", {})
+        const data = await http.post(api + couponId + "/delete", {}, 1)
         return data
     },
     
     upCoupon : upCoupon = async function(couponId) {
-        const data = await http.post(api + couponId + "/up", {})
+        const data = await http.post(api + couponId + "/up", {}, 1)
         return data
     },
     
     
     downCoupon : downCoupon = async function(couponId) {
-        const data = await http.post(api + couponId + "/down", {})
+        const data = await http.post(api + couponId + "/down", {}, 1)
         return data
     },
     
     couponRecords : couponRecords = async function(couponId, couponRecordQueryForm) {
-        const data = await http.get(api + couponId + "/records",  couponRecordQueryForm)
+        const data = await http.get(api + couponId + "/records",  couponRecordQueryForm, 1)
         return data
     }
     
@@ -64,7 +64,7 @@ module.exports.test = {
     },
     
     updateTest : updateTest = {
-        id : 10,
+        id : 2,
         reduceMoney : 100,
         fullMoney : 5000,
         des : '测试测试测试',

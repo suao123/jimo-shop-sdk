@@ -9,7 +9,7 @@ module.exports.api = {
             keyword : keyword,
             content : content
         } 
-        var data = await http.post(api, settingForm)
+        var data = await http.post(api, settingForm, 1)
         return data
     },
     
@@ -19,7 +19,7 @@ module.exports.api = {
             offset : offset,
             limit : limit
         }
-        var data = await http.get(api + "query", queryForm)
+        var data = await http.get(api + "query", queryForm, 1)
         return data
     },
     
@@ -27,7 +27,7 @@ module.exports.api = {
         var queryForm = {
             keyword : keyword
         }
-        var data = await http.get(api + "byKeyword", queryForm)
+        var data = await http.get(api + "byKeyword", queryForm, 1)
         return data
     }
 }
@@ -35,7 +35,7 @@ module.exports.api = {
 module.exports.test = {
 
     test : test = {
-        keyword : "ali.pm",
+        keyword : "ali.",
         content : "123456789098765fghgsjhfasfk"
     },
     

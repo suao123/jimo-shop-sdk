@@ -3,37 +3,37 @@ const api = "/banners/"
 
 module.exports.api = {
     getBanners : getBanners = async function() {
-                        const data = await http.get(api, {})
+                        const data = await http.get(api, {},1)
                         return data
                     },
     
     getBannerById : getBannerById = async function(bannerId) {
-        const data = await http.get(api + bannerId, {})
+        const data = await http.get(api + bannerId, {}, 1)
         return data
     },
     
     addBanner : addBanner = async function(bannerForm) {
-        const data = await http.post(api, bannerForm)
+        const data = await http.post(api, bannerForm, 1)
         return data
     },
     
     updateBanner : updateBanner = async function (bannerId, bannerForm) {
-        const data = await http.post(api + bannerId, bannerForm)
+        const data = await http.post(api + bannerId, bannerForm, 1)
         return data
     },
     
     deleteBanner : deleteBanner = async function(bannerId) {
-        const data = await http.delete(api + bannerId, {})
+        const data = await http.delete(api + bannerId, {}, 1)
         return data
     },
     
     upBanner : upBanner = async function(bannerId) {
-        const data = await http.post(api + bannerId + "/up", {})
+        const data = await http.post(api + bannerId + "/up", {}, 1)
         return data
     },
     
     downBanner : downBanner = async function(bannerId) {
-        const data = await http.post(api + bannerId + "/down", {})
+        const data = await http.post(api + bannerId + "/down", {}, 1)
         return data
     }
 }

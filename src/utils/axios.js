@@ -2,9 +2,9 @@ let axios = require('axios')
 let qs = require('qs')
 let url_seg = require('../config/urlConfig')
 
-const get = async function(api, parameters){
+const get = async function(api, parameters, flag){
     try{
-        var url = url_seg.burl + api;
+        var url = isBeckend(flag) + api;
 
         let res = await axios.get(url, {
             params: parameters,
@@ -28,9 +28,9 @@ const get = async function(api, parameters){
     }
 }
 
-const post = async function(api, parameters){
+const post = async function(api, parameters, flag){
     try{
-        var url = url_seg.burl + api;
+        var url = isBeckend(flag) + api;
         let res = await axios.post(url, qs.stringify(parameters),
             {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" }
@@ -59,9 +59,9 @@ const post = async function(api, parameters){
     
 }
 
-const toDelete = async function (api, parameters) {
+const toDelete = async function (api, parameters, flag) {
     try {
-        var url = url_seg.burl + api;
+        var url = isBeckend(flag) + api;
         let res = await axios.delete(url, qs.stringify(parameters),
             {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" }
@@ -86,6 +86,14 @@ const toDelete = async function (api, parameters) {
     } catch (err) {
         console.log('服务器出错')
         console.log(err)
+    }
+}
+
+const isBeckend = (flag) => {
+    if(flag){
+        return url_seg.burl
+    } else {
+        return url_seg.url
     }
 }
 

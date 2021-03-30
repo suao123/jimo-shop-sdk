@@ -19,7 +19,7 @@ describe('后台优惠券api测试', async () => {
     })
 
     it('删除优惠券', async () => {
-        var res = await beCouponApi.api.deleteCoupon(9)
+        var res = await beCouponApi.api.deleteCoupon(2)
         expect(res.status).to.be.equal(200)
     })
 

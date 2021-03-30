@@ -3,17 +3,17 @@ const api = "/routes/"
 
 module.exports.api = {
     addRoute : addRoute = async function (routeForm) {
-        const data = await http.post(api, routeForm)
+        const data = await http.post(api, routeForm, 1)
         return data
     },
     
     updateRoute : updateRoute = async function(routeId, routeForm) {
-        const data = await http.post(api + routeId, routeForm) 
+        const data = await http.post(api + routeId, routeForm, 1) 
         return data
     },
     
     deleteRoute : deleteRoute = async function(routeId) {
-        const data = await http.delete(api + routeId, {})
+        const data = await http.delete(api + routeId, {}, 1)
         return data
     }
 }
