@@ -2,59 +2,36 @@ let axios = require('axios')
 let qs = require('qs')
 let url_seg = require('../config/urlConfig')
 
+axios.default.timeout = 10000;
+
 const get = async function(api, parameters, flag){
     try{
         var url = isBeckend(flag) + api;
 
-        let res = await axios.get(url, {
-            params: parameters,
-            timeout: 10000
-        })
-        var status = res.status
-        var data = { 
-            data : res.data,
-            status : res.status
-        }
-        return new Promise((resolve) => {
-            if(status == 200) {
-                resolve(data);
-            } else {
-                resolve(data)
-            }
-        })
-    } catch (err) {
-        console.log("服务器出错")
-        console.log(err)
+        let res = await axios.get(url, parameters)
+
+        return getData(res)
+
+    } catch (error) {
+        var data = getData(error.response.data)
+        return data
     }
 }
 
 const post = async function(api, parameters, flag){
     try{
         var url = isBeckend(flag) + api;
+
         let res = await axios.post(url, qs.stringify(parameters),
             {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" }
-            }, {
-                timeout: 10000
             }
         )
 
-        var status = res.status
-        var data = { 
-            data : res.data,
-            status : res.status
-        }
+        return getData(res)
 
-        return new Promise((resolve) => {
-            if(status == 200) {
-                resolve(data);
-            } else {
-                resolve(data)
-            }
-        })
-    } catch(err) {
-        console.log('服务器出错')
-        console.log(err)
+    } catch(error) {
+        return getData(error.response.data)
     }
     
 }
@@ -70,23 +47,27 @@ const toDelete = async function (api, parameters, flag) {
             }
         )
 
-        var status = res.status
-        var data = { 
-            data : res.data,
-            status : res.status
-        }
+        return getData(res)
 
-        return new Promise((resolve) => {
-            if(status == 200) {
-                resolve(data);
-            } else {
-                resolve(data)
-            }
-        })
-    } catch (err) {
-        console.log('服务器出错')
-        console.log(err)
+    } catch (error) {
+        return getData(error.response.data)
     }
+}
+
+const  getData = (res) => {
+    var data = {
+        status : res.status
+    }
+    if (res.status == 200) {
+        data.data = res.data
+        return new Promise((resolve) => {
+            resolve(data)
+        })
+    } else {
+        data.data = res.message
+        return data
+    }
+    
 }
 
 const isBeckend = (flag) => {
