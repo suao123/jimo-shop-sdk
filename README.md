@@ -12,7 +12,7 @@
     1. - [x] banner模块
     2. - [x] coupon模块
     3. user模块
-    4. userAddress模块
+    4. - [x] userAddress模块
     
 2. 后端
     1. - [x] banner管理
