@@ -1,7 +1,7 @@
 # jimo-shop-sdk
 
 #### 依赖安装
-    mvn install
+    mpn install
 
 #### 业务建模图
 ![业务建模图](./docs/media/model.png)
@@ -20,3 +20,4 @@
     3. - [x] route管理
     4. - [x] setting管理
     5. - [x] user管理
+    6. - [x] ProductAttr管理
